@@ -1,0 +1,210 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Introduction to SOLID",
+    "description": "This is an SOLID",
+    "version": "1.0.0",
+    "contact": {
+      "email": "paone@kesveazi.yt"
+    }
+  },
+  "paths": {
+    "/users":{
+      "post":{
+        "tags": ["User"],
+        "summary": "Create a user",
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json":{
+              "schema":{
+                "types": "object",
+                "properties": {
+                  "name":{
+                    "type": "string"
+                  },
+                  "username":{
+                    "type": "string"
+                  }
+                },
+                "example":{
+                  "name": "user name sample",
+                  "username": "user username sample"
+                }
+              }
+            }
+          }
+        },
+        "responses":{
+          "201":{
+            "description": "Created!"
+          },
+          "400":{
+            "description": "User already exists!"
+          }
+        }
+      }
+    },
+    "/todos":{
+      "post":{
+        "tags": ["Todo"],
+        "summary": "Create a todo",
+        "description": "Create a new todo",
+        "parameters":[{
+          "name":"username",
+          "in":"header",
+          "description": "User username",
+          "required": true,
+          "type": "string"
+         }],
+        "requestBody": {
+          "content": {
+            "application/json":{
+              "schema":{
+                "types": "object",
+                "properties": {
+                  "title":{
+                    "type": "string"
+                  },
+                  "deadline":{
+                    "type": "string"
+                  }
+                },
+                "example":{
+                  "title": "todo title sample",
+                  "deadline": "2021-04-22"
+                }
+              }
+            }
+          }
+        },
+        "responses":{
+          "201":{
+            "description": "Created!"
+          },
+          "404":{
+            "description": "User not found!"
+          }
+        }
+      }
+    },
+    "/todos/{id}":{
+      "put":{
+        "tags": ["Todo"],
+        "summary": "Update a todo",
+        "description": "Update a todo",
+        "parameters":[
+          {
+          "name":"username",
+          "in":"header",
+          "description": "User username",
+          "required": true,
+          "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema":{
+              "type":"string"
+            },
+            "description": "Todos id"           
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json":{
+              "schema":{
+                "types": "object",
+                "properties": {
+                  "title":{
+                    "type": "string"
+                  },
+                  "deadline":{
+                    "type": "string"
+                  }
+                },
+                "example":{
+                  "title": "todo title sample",
+                  "deadline": "2021-04-22"
+                }
+              }
+            }
+          }
+        },
+        "responses":{
+          "201":{
+            "description": "Updated!"
+          },
+          "404":{
+            "description": "User not found!"
+          }
+        }
+      },
+      "delete":{
+        "tags": ["Todo"],
+        "summary": "Delete a todo",
+        "description": "Delete a todo",
+        "parameters":[
+          {
+          "name":"username",
+          "in":"header",
+          "description": "User username",
+          "required": true,
+          "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema":{
+              "type":"string"
+            },
+            "description": "Todos id"           
+          }
+        ],
+        "responses":{
+          "204":{
+            "description": "Deleted!"
+          },
+          "404":{
+            "description": "User not found!"
+          }
+        }
+      }
+    },
+    "/todos/{id}/done":{
+      "patch":{
+        "tags": ["Todo"],
+        "summary": "Update a todo done",
+        "description": "Update a todo done",
+        "parameters":[
+          {
+          "name":"username",
+          "in":"header",
+          "description": "User username",
+          "required": true,
+          "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema":{
+              "type":"string"
+            },
+            "description": "Todos id"           
+          }
+        ],
+        "responses":{
+          "201":{
+            "description": "Updated!"
+          },
+          "404":{
+            "description": "User not found!"
+          }
+        }
+      }
+    }
+  }
+}
