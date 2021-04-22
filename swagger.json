@@ -86,6 +86,26 @@
             "description": "User not found!"
           }
         }
+      },
+      "get":{
+        "tags": ["Todo"],
+        "summary": "Get a todos",
+        "description": "Get a todos",
+        "parameters":[{
+          "name":"username",
+          "in":"header",
+          "description": "User username",
+          "required": true,
+          "type": "string"
+         }],
+        "responses":{
+          "200":{
+            "description": "Ok"
+          },
+          "404":{
+            "description": "User not found!"
+          }
+        }
       }
     },
     "/todos/{id}":{
